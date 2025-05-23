@@ -1,0 +1,243 @@
+{% csrf_token %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/balloon/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="shortcut icon" href="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico">
+    <style>
+        
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            margin-right: 10px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        #progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            height: 8px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body
+    style="background-color: #091548; background-image: url('{% static 'media/background_2.png' %}'); background-position: top center; background-repeat: no-repeat; background-size: auto;"
+    width="100%">
+   
+
+
+    <div class="col col-sm-8 col-md-7 col-lg-5 mx-auto" style="align-items: center;
+    display: grid;
+    height: 80vh;">
+        <div class="card border rounded-lg mt-5 p-5 m-2">
+            <div class="card-body">
+                {% comment %} <form id="form" action="{% url 'details' %}" method="post" style="font-size: 20px;"> {% endcomment %}
+                    <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="question" id="question1">
+                        <label for="input1">Enter your Aadhar card no.</label>
+                        <input type="text" id="input1" name="aadhar" required>
+                    </div>
+                    <div class="question hidden" id="question2">
+                        <label for="input2">Update your WhatsApp phone no.</label>
+                        <input type="text" id="input2" name="whatsapp" required>
+                    </div>
+                    <div class="question hidden" id="question3">
+                        <label for="input3">Upload your aadhar front photo</label>
+                        <input type="file" id="input3" name="aadharfront" required>
+                    </div>
+                    <div class="question hidden" id="question4">
+                        <label for="input4">Upload your aadhar back photo</label>
+                        <input type="file" id="input4" name="aadharback" required>
+                    </div>
+                    <div class="question hidden" id="question5">
+                        <label for="input5">Enter your Email id</label>
+                        <input type="email" id="input5" name="email" required>
+                    </div>
+                    <div class="question hidden" id="question6">
+                        <label for="input6">Upload your photo</label>
+                        <input type="file" id="input6" name="picture" required>
+                    </div>
+                    <div class="question hidden" id="question7">
+                        <label for="input7">Enter your address</label>
+                        <input type="text" id="input7" name="address" required>
+                    </div>
+                    <div class="question hidden" id="question8">
+                        <label for="input8">Enter you school name</label>
+                        <input type="text" id="input8" name="schoolname" required>
+                    </div>
+                    <div class="question hidden" id="question9">
+                        <label for="input9">Enter your marital status</label>
+                        <input type="text" id="input9" name="marital" required>
+                    </div>
+                    <div class="question hidden" id="question10">
+                        <label for="input10">Enter your Date of Birth</label>
+                        <input type="date" id="input10" name="date_of_birth" required>
+                    </div>
+                    <div class="question hidden" id="question11">
+                        <label for="input11">Enter your college name</label>
+                        <input type="text" id="input11" name="college_name" required>
+                    </div>
+                    <div class="question hidden" id="question12">
+                        <label for="input12">Enter your pin code </label>
+                        <input type="text" id="input12" name="pincode" required>
+                    </div>
+                    <div class="question hidden" id="question13">
+                        <label for="input13">Enter your father name</label>
+                        <input type="text" id="input13" name="father_name" required>
+                    </div>
+                    <div class="question hidden" id="question14">
+                        <label for="input14">Enter your mother name   </label>
+                        <input type="text" id="input14" name="mother_name" required>
+                    </div>
+                    <div class="question hidden" id="question15">
+                        <label for="input15">How many siblings you have </label>
+                        <input type="text" id="input15" name="sibling" required>
+                    </div>
+                    <div class="question hidden" id="question16">
+                        <label for="input16">Tell us your one best friend name</label>
+                        <input type="text" id="input16" name="friend_name" required>
+                    </div>
+                    <div class="question hidden" id="question17">
+                        <label for="input17">Fav. Animal name</label>
+                        <input type="text" id="input17" name="animal_name" required>
+                    </div>
+                    <div class="question hidden" id="question18">
+                        <label for="input18">Fav. Food you like to Eat </label>
+                        <input type="text" id="input18" name="eat" required>
+                    </div>
+                    <div class="question hidden" id="question19">
+                        <label for="input19">Enter you work profile</label>
+                        <input type="text" id="input19" name="profilename" required>
+                    </div>
+                    
+
+
+                    <!-- Add more questions here -->
+                    <button type="button" id="prevBtn" onclick="prevQuestion()" class="hidden">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextQuestion()">Next</button>
+                    <button type="submit" id="submitBtn" class="hidden">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+    </div>
+
+        
+    <script>
+        let currentQuestion = 1;
+
+        function nextQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion++;
+            const nextQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (nextQuestionDiv) {
+                nextQuestionDiv.classList.remove('hidden');
+                document.getElementById('prevBtn').classList.remove('hidden');
+                updateProgressBar();
+                if (currentQuestion === 19) { // Adjust this value based on the number of questions
+                    document.getElementById('nextBtn').classList.add('hidden');
+                    document.getElementById('submitBtn').classList.remove('hidden');
+                }
+            }
+        }
+
+        function prevQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion--;
+            const prevQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (prevQuestionDiv) {
+                prevQuestionDiv.classList.remove('hidden');
+                document.getElementById('nextBtn').classList.remove('hidden');
+                updateProgressBar();
+                if (currentQuestion === 1) {
+                    document.getElementById('prevBtn').classList.add('hidden');
+                }
+            }
+        }
+        function updateProgressBar() {
+            const progress = (currentQuestion - 1) * 100 / 20; // Adjust 3 based on the total number of questions
+            document.getElementById('progress').style.width = progress + '%';
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script>
+        let currentQuestion = 1;
+
+        function nextQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion++;
+            const nextQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (nextQuestionDiv) {
+                nextQuestionDiv.classList.remove('hidden');
+                document.getElementById('prevBtn').classList.remove('hidden');
+                if (currentQuestion === 20) {
+                    document.getElementById('nextBtn').classList.add('hidden');
+                    document.getElementById('submitBtn').classList.remove('hidden');
+                }
+            }
+        }
+
+        function prevQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion--;
+            const prevQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (prevQuestionDiv) {
+                prevQuestionDiv.classList.remove('hidden');
+                document.getElementById('nextBtn').classList.remove('hidden');
+                if (currentQuestion === 1) {
+                    document.getElementById('prevBtn').classList.add('hidden');
+                }
+            }
+        }
+    </script>
+   
+</body>
+
+</html>

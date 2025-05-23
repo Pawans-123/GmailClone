@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            margin-right: 10px;
+        }
+
+        #progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+        <form id="form" action="submit.php" method="post">
+            <div class="question" id="question1">
+                <label for="input1">1. Enter your Aadhar card no.</label>
+                <input type="text" id="input1" name="input1" required>
+            </div>
+            <div class="question hidden" id="question2">
+                <label for="input2">2. Update your WhatsApp phone no.</label>
+                <input type="tel" id="input2" name="input2" required>
+            </div>
+            <div class="question hidden" id="question3">
+                <label for="input3">3. Upload your aadhar front photo</label>
+                <input type="file" id="input3" name="input3" required>
+            </div>
+            <!-- Add more questions here -->
+            <button type="button" id="prevBtn" onclick="prevQuestion()" class="hidden">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextQuestion()">Next</button>
+            <button type="submit" id="submitBtn" class="hidden">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        function nextQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion++;
+            const nextQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (nextQuestionDiv) {
+                nextQuestionDiv.classList.remove('hidden');
+                document.getElementById('prevBtn').classList.remove('hidden');
+                updateProgressBar();
+                if (currentQuestion === 3) { // Adjust this value based on the number of questions
+                    document.getElementById('nextBtn').classList.add('hidden');
+                    document.getElementById('submitBtn').classList.remove('hidden');
+                }
+            }
+        }
+
+        function prevQuestion() {
+            const currentQuestionDiv = document.getElementById('question' + currentQuestion);
+            currentQuestionDiv.classList.add('hidden');
+            currentQuestion--;
+            const prevQuestionDiv = document.getElementById('question' + currentQuestion);
+            if (prevQuestionDiv) {
+                prevQuestionDiv.classList.remove('hidden');
+                document.getElementById('nextBtn').classList.remove('hidden');
+                updateProgressBar();
+                if (currentQuestion === 1) {
+                    document.getElementById('prevBtn').classList.add('hidden');
+                }
+            }
+        }
+
+        function updateProgressBar() {
+            const progress = (currentQuestion - 1) * 100 / 3; // Adjust 3 based on the total number of questions
+            document.getElementById('progress').style.width = progress + '%';
+        }
+    </script>
+</body>
+
+</html>

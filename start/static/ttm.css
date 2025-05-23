@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Added box-sizing for better layout control */
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid whitesmoke;
+  }
+  
+  .header__left img {
+    object-fit: contain;
+    height: 50px; /* Reduced height for smaller screens */
+    width: auto; /* Adjusted width for smaller screens */
+  }
+  
+  .header__middle {
+    flex: 1; /* Expanded to fill available space */
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .header__middle input {
+    border: none;
+    width: 100%;
+    padding: 8px; /* Reduced padding for smaller screens */
+    outline: none;
+    font-size: small; /* Adjusted font size for smaller screens */
+    background-color: transparent;
+  }
+  
+  .header__right {
+    display: flex;
+    padding-right: 10px; /* Adjusted padding for smaller screens */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    flex: 0.25; /* Adjusted sidebar width for smaller screens */
+    max-width: 250px; /* Reduced max-width for smaller screens */
+  }
+  
+  .sidebar__compose {
+    margin: 15px 0; /* Adjusted margins for smaller screens */
+    padding: 10px;
+  }
+  
+  .sidebarOption h3 {
+    font-size: small; /* Adjusted font size for smaller screens */
+  }
+  
+  .sidebar__footer {
+    display: none; /* Hide footer icons on smaller screens */
+  }
+  
+  /* Main body */
+  .main__body {
+    display: flex;
+    flex-direction: column; /* Changed to column layout for smaller screens */
+  }
+  
+  /* Email List */
+  .emailList {
+    flex: 1;
+    overflow: auto; /* Added overflow for better scrolling on smaller screens */
+  }
+  
+  .emailRow__message h4 {
+    max-width: 200px; /* Reduced width for smaller screens */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .emailRow__time {
+    font-size: x-small; /* Adjusted font size for smaller screens */
+  }
+  
